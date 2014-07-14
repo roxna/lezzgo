@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <div class="intro-header">
+
+        <div class="container">
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="intro-message ride">
+                        <h1>Book a ride. Offer a ride.</h1>
+                        <h2>Make that weekend trip a lot more fun!</h2>
+                        <hr class="intro-divider"><br>
+{#                        <ul class="list-inline intro-social-buttons">#}
+{#                            <li><a href="https://twitter.com/SBootstrap" class="btn btn-default btn-lg"><i class="fa fa-twitter fa-fw"></i> <span class="network-name">Twitter</span></a></li>#}
+{#                            <li><a href="https://github.com/IronSummitMedia/startbootstrap" class="btn btn-default btn-lg"><i class="fa fa-github fa-fw"></i> <span class="network-name">Github</span></a></li>#}
+{#                            <li><a href="#" class="btn btn-default btn-lg"><i class="fa fa-linkedin fa-fw"></i> <span class="network-name">Linkedin</span></a></li>#}
+{#                        </ul>#}
+{#                        <form method="post" action="{% url "choose_ride" %}" class="form-inline" style="width: 900px">#}
+{#                            {% crispy form form.helper %}#}
+{#                        </form>#}
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- /.container -->
+
+    </div>
+    <!-- /.intro-header -->
+
+    <div class="content-section-a">
+
+        <div class="container">
+
+            <div class="row">
+                <div class="col-lg-5 col-sm-6">
+                    <hr class="section-heading-spacer">
+                    <div class="clearfix"></div>
+                    <h2 class="section-heading">Looking for a ride?
+                        <br>Find one with a trusted traveller</h2>
+                    <p class="lead">Search for a ride. Contact the driver you'd like to ride with. Pay online to confirm your spot.
+                    Travel together. Rate the driver and your experience to keep the quality up.</p>
+                    <p class="lead"> Easy!</p>
+                </div>
+                <div class="col-lg-5 col-lg-offset-2 col-sm-6">
+                    <img class="img-responsive" src="{% static "img/search_ride.jpg" %}" alt="">
+                </div>
+            </div>
+
+        </div>
+        <!-- /.container -->
+
+    </div>
+    <!-- /.content-section-a -->
+
+    <div class="content-section-b">
+
+        <div class="container">
+
+            <div class="row">
+                <div class="col-lg-5 col-lg-offset-1 col-sm-push-6  col-sm-6">
+                    <hr class="section-heading-spacer">
+                    <div class="clearfix"></div>
+                    <h2 class="section-heading">Have empty seats?
+                        <br>Offer them out and save money!</h2>
+                    <p class="lead">Provide information about your ride online including date and time of departure and price per seat.
+                    Confirm your passengers when they contact you. Get paid, save money and have a fun ride together.</p>
+                </div>
+                <div class="col-lg-5 col-sm-pull-6  col-sm-6">
+                    <img class="img-responsive" src="{% static "img/offer-ride.jpg" %}" alt="">
+                </div>
+            </div>
+
+        </div>
+        <!-- /.container -->
+
+    </div>
+    <!-- /.content-section-b -->
+
+    <div class="content-section-a">
+
+        <div class="container">
+
+            <div class="row">
+                <div class="col-lg-5 col-sm-6">
+                    <hr class="section-heading-spacer">
+                    <div class="clearfix"></div>
+                    <h2 class="section-heading">Your safety is our concern.
+                        <br>We work on having you covered.</h2>
+                    <p class="lead">The identities of all drivers and passengers are validated through their real names, phone numbers, photos and publicly visible ratings from users like you.
+                        User contact information remains confidential unless you're signing up for a ride. And women have the option to sign up for ladies-only rides, so we help ensure further safety.</p>
+                </div>
+                <div class="col-lg-5 col-lg-offset-2 col-sm-6">
+                    <img class="img-responsive" src="{% static "img/safety-dog.jpg" %}" alt="">
+                </div>
+            </div>
+
+        </div>
+        <!-- /.container -->
+
+    </div>
+    <!-- /.content-section-a -->
+
+{% endblock %}
+

@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <h2 class = "section-heading"> Log In</h2>
+    <form method = 'POST' style="width: 250px">
+        {% csrf_token %}
+        {{  form.as_p }}
+        <input type="submit" value="Log In" class="btn btn-success">
+    </form>
+    <br> <br>
+
+    <p> Not a member? <a href="{% url "register" %}"> Register now!</a></p>
+    <p> Forgot password? <a href="{% url "password_reset" %}"> Reset here.</a></p>
+
+
+{% endblock %}
+

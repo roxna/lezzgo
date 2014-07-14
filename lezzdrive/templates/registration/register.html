@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <h2 class = "section-heading"> Register</h2>
+    <form method="post" class="form-horizontal find-rides-displays" style="margin-left: 10px; width: 800px;">
+        {% crispy form form.helper %}
+    </form>
+    <br> <br>
+
+    <p> Already a member? <a href="{% url "login" %}"> Log In</a></p>
+{% endblock %}
+

@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2 class = "section-heading"> Ah bummer!</h2><br>
+    <p class = "lead"> There's no one traveling there right now. <p><br>
+
+    <p>Try another search?  <a href="{% url "find_ride" %}">Find a ride</a></p>
+    <p>Decide to drive yourself?  <a href="{% url "offer_ride" %}">Post your ride</a></p>
+
+{% endblock %}

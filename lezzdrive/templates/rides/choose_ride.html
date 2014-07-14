@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+    {% if available_rides.count == 1 %}
+        <h2 class = "section-heading"> {{ available_rides.count }} ride from {{ departure_city }} to {{ arrival_city }}</h2>
+    {% else %}
+        <h2 class = "section-heading"> {{ available_rides.count }} rides from {{ departure_city }} to {{ arrival_city }}</h2>
+    {% endif %}
+
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <div class="find-rides-displays">
+       <div class="content-section-a">
+           <div class="container">
+                <div class="row">
+                    {% for ride in available_rides %}
+                        <div class="clearfix"></div>
+                        <div class="col-lg-2 col-sm-3">
+                            <h3 class="section-heading"></h3>
+                            {% if ride.driver.profile_pic %}
+                                <img width="100px" src = "{{ ride.driver.profile_pic.url }}">
+                            {% else %}
+                                <img width="100px" src = "{% static "img/default_profile_pic.jpg" %}">
+                            {% endif %}
+                            <p class="lead"> {{ ride.driver.first_name.capitalize }} {{ ride.driver.last_name.capitalize }} </p>
+                            {% if ride.driver.driver_profile.num_rides_given == 1 %}
+                                <div> {{ ride.driver.driver_profile.num_rides_given }} ride offered to date </div>
+                            {% else %}
+                                <div> {{ ride.driver.driver_profile.num_rides_given }} rides offered to date </div>
+                            {% endif %}
+                        </div>
+                        <div class="col-lg-6 col-lg-offset-1 col-sm-6">
+                            <h3 class="section-heading"> {{ ride.departure_date }} - {{ ride.departure_time }}</h3>
+                            <div class="lead"> Car: {{ ride.car }} </div>
+                            <div class="lead"> {{ ride.num_seats_available }} seat(s) left </div>
+                            {% if ride.no_smoking or ride.no_pets or ride.ladies_only or ride.comments %}
+{#                                <p class="lead">Ride details</p>#}
+                                <p style="margin-top: -10px"><em>{% if ride.no_smoking %} No smoking. {% endif %}
+                                        {% if ride.no_pets %} No pets allowed. {% endif %}
+                                        {% if ride.ladies_only %} Ladies only. {% endif %}</em><br>
+                                        {% if ride.comments %}Comments from driver: <em>{{ ride.comments }}{% endif %}</em></p>
+                            {% endif %}
+                        </div>
+                        <div class="col-lg-2 col-lg-offset-1 col-sm-3" style="margin-left: -10px">
+                            <h2 class="section-heading"> ${{ ride.price_per_seat }} <span style="font-size: 15px"> per seat </span></h2><br>
+                            <form method="post" action="{% url "confirm_ride" ride.id %}">
+                                {% csrf_token %}
+                                <input type="submit" value="SELECT" class="btn btn-success">
+                            </form>
+                        </div>
+                        <div class="section-divider"></div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+     </div>
+
+    <br><br><br>
+
+{#   #### IF CHOOSE THIS RIDE, NUM SEATS LEFT -= 1 ####}
+
+{% endblock %}

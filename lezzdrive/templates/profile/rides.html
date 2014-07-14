@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+
+{% block title %} Rides {% endblock %}
+
+{% block content %}
+    <div class="find-rides-displays">
+        {% if upcoming_rides_as_driver.count == 0 and upcoming_rides_as_passenger.count == 0 and past_rides_as_driver.count == 0 and past_rides_as_passenger == 0 %}
+            <h2 class = "section-heading"> No ride history </h2><br>
+            <p class="lead">Check out who else is driving where you want to go. <a href="{% url "find_ride" %}">Find a ride</a></p>
+            <p class="lead">Decide to drive yourself?  <a href="{% url "offer_ride" %}">Post your ride</a></p>
+
+        {% else %}
+            <h2 class = "section-heading"> Upcoming Rides </h2>
+                {% if upcoming_rides_as_driver.count == 0 and upcoming_rides_as_passenger.count == 0 %}
+                    <p class="lead"> Doesn't look like you have any upcoming rides.</p><br>
+                    <p>Want to join a trip? <a href="{% url "find_ride" %}">Find a ride </a></p>
+                    <p>Have a few seats to rent out? <a href="{% url "offer_ride" %}">Post your trip</a></p>
+                {% else %}
+                    <p class="lead">AS DRIVER</p>
+                        {% if upcoming_rides_as_driver.count == 0 %}
+                            <p>No upcoming rides as a driver</p>
+                        {% else %}
+                            {% include "includes/rides-table-header.html" %}
+                            {% for ride in upcoming_rides_as_driver %}
+                                <tr>
+                                    <td> {{ ride.departure_city }} </td>
+                                    <td> {{ ride.departure_city }} </td>
+                                    <td> {{ ride.departure_date }} @ {{ ride.departure_time }} </td>
+                                    <td> </td>
+    {#                                    <th> <a href = "mailto:{% for passenger in ride.passenger.all %}{{ passenger.email }}{% endfor %}"> E-mail the passengers</a> </th>#}
+    {#                                <td> {% if not ride.passenger__isnull %}#}
+    {#                                    {% for passenger in ride.passenger.all %}#}
+    {#                                         {{ passenger.first_name.capitalize }} {{ passenger.last_name.capitalize }}#}
+    {#                                    {% endfor %}#}
+    {#                                {% endif %}</td>#}
+                                </tr>
+                            {% endfor %}
+                        {% endif %}
+                        </div></table>
+
+                        <p class="lead">AS PASSENGER</p>
+                            {% if upcoming_rides_as_passenger.count == 0 %}
+                                <p>No upcoming rides as a passenger</p>
+                            {% else %}
+                                {% include "includes/rides-table-header.html" %}
+                                {% for ride in upcoming_rides_as_passenger %}
+                                    <tr>
+                                        <td> {{ ride.departure_city }} </td>
+                                        <td> {{ ride.departure_city }} </td>
+                                        <td> {{ ride.departure_date }} @ {{ ride.departure_time }} </td>
+                                        <td> <a href = "{% url "cancel_seat" ride.id %}"> Cancel seat </a></td>
+    {#                                    <td> <a href = "mailto:"{{ ride.driver.email }}> E-mail driver {{ ride.driver.first_name.capitalize }}</a> </td>#}
+                                    </tr>
+                                {% endfor %}
+                            {% endif %}
+                        </div></table>
+                {% endif %} <br>
+
+            <h2 class = "section-heading"> Past Rides</h2>
+                {% if past_rides_as_driver.count == 0 and past_rides_as_passenger.count == 0 %}
+                    <p class="lead"> Looks like you don't have a history with LezzGo.</p><br>
+                    <p>Want to join a trip? <a href="{% url "find_ride" %}">Find a ride </a></p>
+                    <p>Have a few seats to rent out? <a href="{% url "offer_ride" %}">Post your trip</a></p>
+                {% else %}
+                        <p class="lead">AS DRIVER</p>
+                            {% if past_rides_as_driver.count == 0 %}
+                                <p>No past rides as a driver</p>
+                            {% else %}
+                                {% include "includes/rides-table-header.html" %}
+                                {% for ride in past_rides_as_driver %}
+                                    <tr>
+                                        <td> {{ ride.departure_city }} </td>
+                                        <td> {{ ride.departure_city }} </td>
+                                        <td> {{ ride.departure_date }} @ {{ ride.departure_time }} </td>
+    {#                                    <td> You were the driver! </td>#}
+                                    </tr>
+                                {% endfor %}
+                            {% endif %}
+                        </div></table>
+
+                        <p class="lead">AS PASSENGER</p>
+                            {% if past_rides_as_passenger.count == 0 %}
+                                <p>No past rides as a passenger</p>
+                            {% else %}
+                                {% include "includes/rides-table-header.html" %}
+                                {% for ride in past_rides_as_passenger %}
+                                    <tr>
+                                        <td> {{ ride.departure_city }} </td>
+                                        <td> {{ ride.departure_city }} </td>
+                                        <td> {{ ride.departure_date }} @ {{ ride.departure_time }} </td>
+    {#                                    <td> {{ ride.driver.username }}</td>#}
+                                    </tr>
+                                {% endfor %}
+                            {% endif %}
+                        </div></table>
+                {% endif %}<br>
+        {% endif %}
+    </div>
+
+{% endblock %}

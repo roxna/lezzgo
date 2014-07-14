@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <h2 class = "section-heading"> Account Settings </h2>
+
+    <h3 class="section-heading">Profile Information</h3>
+    <form method="post" class="form-horizontal" style="width: 500px; margin-left: 15px;">
+        {% crispy form form.helper %}
+    </form>
+
+{% endblock %}

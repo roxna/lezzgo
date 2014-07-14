@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+    <div class="content-section-a find-rides-displays">
+    <div class="container ">
+        <div class="row">
+            <div class="col-lg-5 col-sm-6">
+                <h2 class="section-heading">{{ header }}</h2>
+                <p class="lead">{{ text1 }} </p><br>
+                <p class="section-heading">{{ text2a }} <a href="{% url link2 %}">{{ text2b }}</a></p>
+                <p class="section-heading">{{ text3a }}  <a href="{% url link3 %}">{{ text3b }}</a></p>
+            </div>
+            <div class="col-lg-5 col-lg-offset-2 col-sm-6">
+                <img class="img-responsive find-rides-displays" src="{% static image %}" >
+            </div>
+        </div>
+    </div>
+    </div>
+
+{% endblock %}
+

@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+
+    <div class="content-section-a find-rides-displays">
+    <div class="container ">
+        <div class="row">
+            <div class="col-lg-5 col-sm-6">
+                <h2 class="section-heading">Congratulations, {{ user.username }}</h2>
+                {% if num_rides_given == 1 %}
+                    <p  class = "lead"> Your first ride has been published! We hope you enjoy the company on your ride. </p>
+                {% else %}
+                    <p class = "lead"> That's {{ num_rides_given }} rides you've offered out so far.<br>
+                        Hope you're enjoying the company on the road! </p>
+                {% endif %}<br>
+                <p> Want to see the rides you've published? <a href="{% url "profile" %}">Go to your profile</a></p>
+                <p> Traveling some more? <a href="{% url "offer_ride" %}">Post another ride</a></p>
+            </div>
+            <div class="col-lg-5 col-lg-offset-2 col-sm-6">
+                <img class="img-responsive find-rides-displays" src="{% static "img/publish-ride.jpg" %}" >
+            </div>
+        </div>
+    </div>
+    </div>
+
+{% endblock %}
